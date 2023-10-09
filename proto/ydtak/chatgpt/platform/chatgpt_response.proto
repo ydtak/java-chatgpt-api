@@ -12,7 +12,7 @@ option java_outer_classname = "ChatGptResponseProto";
 option java_package = "ydtak.chatgpt.platform";
 
 // Encapsulates properties for a ChatGPT API response. See
-// https://platform.openai.com/docs/api-reference/chat/create.
+// https://platform.openai.com/docs/api-reference/chat/object.
 message ChatGptResponse {
 
   // A unique identifier for the chat completion.
