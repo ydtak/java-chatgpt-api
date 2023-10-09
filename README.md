@@ -30,7 +30,7 @@ To call [Chat completions (ChatGPT) API](https://platform.openai.com/docs/guides
 ChatGptApi api = ChatGptApi.getInstance("config.properties");
 ```
 
-Construct a [ChatGptRequest](proto/ydtak/chatgpt/platform/chatgpt_request.proto) and send it using a [ChatGptApi](./java/ydtak/chatgpt/platform/ChatGptApi.java) object.
+Construct a [ChatGptRequest](proto/ydtak/chatgpt/platform/chatgpt_request.proto) and send it using [ChatGptApi](./java/ydtak/chatgpt/platform/ChatGptApi.java). This will return a [ChatGptResponse](proto/ydtak/chatgpt/platform/chatgpt_response.proto) object if succesful.
 
 ```java
 ChatGptRequest request =
@@ -42,7 +42,7 @@ ChatGptRequest request =
         .setModel("gpt-4")
         .setTemperature(0.7f)
         .build();
-String response = chatGptApi.sendChatGptRequest(request);
+ChatGptResponse response = chatGptApi.sendChatGptRequest(request);
 ```
 
 This will return a response from OpenAI similar to the example response below.
