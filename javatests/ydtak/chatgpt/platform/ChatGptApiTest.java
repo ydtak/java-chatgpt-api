@@ -29,9 +29,9 @@ public class ChatGptApiTest {
             .setTemperature(0.7f)
             .build();
 
-    String result = chatGptApi.sendChatGptRequest(request);
+    ChatGptResponse result = chatGptApi.sendChatGptRequest(request);
 
     System.out.println(result);
-    assertThat(result).contains("chat.completion");
+    assertThat(result.getObject()).contains("chat.completion");
   }
 }

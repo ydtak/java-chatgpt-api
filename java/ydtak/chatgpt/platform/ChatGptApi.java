@@ -31,7 +31,7 @@ public class ChatGptApi {
   /**
    * Sends a request to the ChatGPT API. See https://platform.openai.com/docs/api-reference/chat.
    */
-  public String sendChatGptRequest(ChatGptRequest request) {
+  public ChatGptResponse sendChatGptRequest(ChatGptRequest request) {
     HttpURLConnection connection = null;
     try {
       connection = (HttpURLConnection) URI.create(CHATGPT_API_URL).toURL().openConnection();
@@ -45,7 +45,10 @@ public class ChatGptApi {
       outputStreamWriter.flush();
       outputStreamWriter.close();
 
-      return readInputStream(connection.getInputStream());
+      ChatGptResponse.Builder chatGptResponse = ChatGptResponse.newBuilder();
+      String response = readInputStream(connection.getInputStream());
+      JsonFormat.parser().merge(response, chatGptResponse);
+      return chatGptResponse.build();
     } catch (IOException e) {
       if (connection != null) {
         System.err.println(readInputStream(connection.getErrorStream()));
