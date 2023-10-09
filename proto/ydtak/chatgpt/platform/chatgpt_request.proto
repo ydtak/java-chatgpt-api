@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package ydtak.chatgpt.platform;
+
+// See https://linter.aip.dev/rules/.
+// (-- api-linter: core::0123=disabled --)
+// (-- api-linter: core::0191::proto-package=disabled --)
+// (-- api-linter: core::0215=disabled --)
+
+option java_multiple_files = true;
+option java_outer_classname = "ChatGptRequestProto";
+option java_package = "ydtak.chatgpt.platform";
+
+// Encapsulates properties for a ChatGPT API request. See
+// https://platform.openai.com/docs/api-reference/chat/create.
+message ChatGptRequest {
+
+  // A list of messages comprising the conversation so far.
+  repeated Message messages = 1;
+
+  // Represents a message in a ChatGPT conversation.
+  message Message {
+
+    // The contents of the message. content is required for all messages, and
+    // may be null for assistant messages with function calls.
+    string content = 1;
+
+    // The role of the messages author. One of system, user, assistant, or
+    // function. See
+    // https://ai.stackexchange.com/questions/39837/meaning-of-roles-in-the-api-of-gpt-4-chatgpt-system-user-assistant.
+    string role = 2;
+  }
+
+  // ID of the model to use. See
+  // https://platform.openai.com/docs/models/model-endpoint-compatibility for
+  // details on which models work with the Chat API.
+  string model = 2;
+
+  // What sampling temperature to use, between 0 and 2. Higher values like 0.8
+  // will make the output more random, while lower values like 0.2 will make it
+  // more focused and deterministic.
+  float temperature = 3;
+}
